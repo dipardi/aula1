@@ -28,26 +28,27 @@ $logado = isset($_SESSION["login"]) && $_SESSION["login"] === true;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vagas de Emprego - Encontre sua oportunidade</title>
-    <link rel="stylesheet" href="assets/style_new.css">
+    <title>IFsul Vagas - Portal de Oportunidades</title>
+    <link rel="stylesheet" href="assets/style_ifsul.css">
 </head>
 <body>
     <!-- HEADER FIXO -->
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <h2>🎯 VagasJob</h2>
+                <span class="logo-ifsul">🎓</span>
+                <h2>IFsul Vagas</h2>
             </div>
             
             <nav class="nav-buttons">
                 <?php if ($logado): ?>
                     <span class="user-welcome">Olá, <?= htmlspecialchars($_SESSION["nome"]) ?>!</span>
-                    <a href="usuario/minhas_candidaturas.php" class="btn btn-outline">Minhas Candidaturas</a>
-                    <a href="site/logout.php" class="btn btn-danger">Sair</a>
+                    <a href="usuario/minhas_candidaturas.php" class="btn btn-outline">📋 Minhas Candidaturas</a>
+                    <a href="site/logout.php" class="btn btn-danger">🚪 Sair</a>
                 <?php else: ?>
-                    <a href="cadastro.php" class="btn btn-primary">Cadastrar</a>
-                    <a href="login.php" class="btn btn-outline">Login</a>
-                    <a href="login_admin.php" class="btn btn-admin">Admin</a>
+                    <a href="cadastro.php" class="btn btn-success">✅ Cadastrar</a>
+                    <a href="login.php" class="btn btn-primary">🔐 Login</a>
+                    <a href="login_admin.php" class="btn btn-admin">⚙️ Admin</a>
                 <?php endif; ?>
             </nav>
         </div>
@@ -56,19 +57,25 @@ $logado = isset($_SESSION["login"]) && $_SESSION["login"] === true;
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">Encontre sua próxima oportunidade profissional</h1>
-            <p class="hero-subtitle">Conectamos talentos com as melhores vagas do mercado</p>
+            <div class="hero-content">
+                <div class="hero-badge">🎯 VENHA TRABALHAR NO IFSUL</div>
+                <h1 class="hero-title">Encontre Sua Oportunidade no IFsul</h1>
+                <p class="hero-subtitle">Portal de vagas para a comunidade acadêmica e profissional</p>
+                <p class="hero-ifsul">⭐ Instituto Federal Sul-rio-grandense - Campus em todo o RS</p>
+            </div>
             
             <?php
             // Mensagens de feedback
             if (isset($_GET["msg"])) {
+                echo '<div style="margin-top: 24px;">';
                 if ($_GET["msg"] === "ok") {
-                    echo '<div class="alert alert-success" style="margin-top: 20px;">✅ Candidatura realizada com sucesso!</div>';
+                    echo '<div class="alert alert-success">✅ Candidatura realizada com sucesso!</div>';
                 } elseif ($_GET["msg"] === "ja") {
-                    echo '<div class="alert alert-warning" style="margin-top: 20px;">⚠️ Você já se candidatou a esta vaga.</div>';
+                    echo '<div class="alert alert-warning">⚠️ Você já se candidatou a esta vaga.</div>';
                 } elseif ($_GET["msg"] === "removida") {
-                    echo '<div class="alert alert-error" style="margin-top: 20px;">❌ Candidatura cancelada com sucesso.</div>';
+                    echo '<div class="alert alert-error">❌ Candidatura cancelada com sucesso.</div>';
                 }
+                echo '</div>';
             }
             ?>
         </div>
@@ -79,7 +86,7 @@ $logado = isset($_SESSION["login"]) && $_SESSION["login"] === true;
         <div class="container">
             <div class="filter-card">
                 <form method="get" action="index.php" class="filter-form">
-                    <label for="categoria">Filtrar por categoria:</label>
+                    <label for="categoria">🔍 Filtrar por categoria:</label>
                     <select name="categoria" id="categoria" onchange="this.form.submit()">
                         <option value="0">📂 Todas as categorias</option>
                         <?php foreach ($categorias as $cat): ?>
@@ -92,7 +99,7 @@ $logado = isset($_SESSION["login"]) && $_SESSION["login"] === true;
                 </form>
                 
                 <?php if ($idCategoriaSelecionada > 0): ?>
-                    <a href="index.php" class="btn-clear-filter">Limpar filtro</a>
+                    <a href="index.php" class="btn-clear-filter">🔄 Limpar filtro</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -102,10 +109,10 @@ $logado = isset($_SESSION["login"]) && $_SESSION["login"] === true;
     <section class="vagas-section">
         <div class="container">
             <h2 class="section-title">
-                <?php if ($idCategoriaSelecionada > 0): ?>
-                    Vagas filtradas
+                💼 <?php if ($idCategoriaSelecionada > 0): ?>
+                    Vagas Filtradas
                 <?php else: ?>
-                    Todas as vagas disponíveis
+                    Todas as Vagas Disponíveis
                 <?php endif; ?>
                 <span class="badge"><?= count($vagas) ?></span>
             </h2>
@@ -161,7 +168,7 @@ $logado = isset($_SESSION["login"]) && $_SESSION["login"] === true;
                                         <?php endif; ?>
                                     <?php else: ?>
                                         <a href="login.php?redirect=index.php" class="btn btn-primary btn-small">
-                                            🔐 Fazer login para candidatar
+                                            🔐 Fazer login
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -176,7 +183,10 @@ $logado = isset($_SESSION["login"]) && $_SESSION["login"] === true;
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; <?= date("Y") ?> VagasJob - Todos os direitos reservados</p>
+            <div class="footer-content">
+                <p>&copy; <?= date("Y") ?> <span class="footer-ifsul">IFsul Vagas</span> - Portal de Oportunidades</p>
+                <p>🎓 Instituto Federal Sul-rio-grandense - Educação de Excelência</p>
+            </div>
         </div>
     </footer>
 </body>

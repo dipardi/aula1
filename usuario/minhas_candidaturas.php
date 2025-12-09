@@ -21,22 +21,23 @@ $candidaturas = $candDAO->listarPorUsuario($idUsuario);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minhas Candidaturas - VagasJob</title>
-    <link rel="stylesheet" href="../assets/style_new.css">
+    <title>Minhas Candidaturas - IFsul Vagas</title>
+    <link rel="stylesheet" href="../assets/style_ifsul.css">
 </head>
 <body>
     <!-- HEADER FIXO -->
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <h2>🎯 VagasJob</h2>
+                <span class="logo-ifsul">🎓</span>
+                <h2>IFsul Vagas</h2>
             </div>
             
             <nav class="nav-buttons">
                 <span class="user-welcome">Olá, <?= htmlspecialchars($_SESSION["nome"]) ?>!</span>
-                <a href="../index.php" class="btn btn-outline">Ver Vagas</a>
-                <a href="minhas_candidaturas.php" class="btn btn-primary">Minhas Candidaturas</a>
-                <a href="../site/logout.php" class="btn btn-danger">Sair</a>
+                <a href="../index.php" class="btn btn-outline">💼 Ver Vagas</a>
+                <a href="minhas_candidaturas.php" class="btn btn-primary">📋 Minhas Candidaturas</a>
+                <a href="../site/logout.php" class="btn btn-danger">🚪 Sair</a>
             </nav>
         </div>
     </header>
@@ -48,12 +49,21 @@ $candidaturas = $candDAO->listarPorUsuario($idUsuario);
                 <span class="badge"><?= count($candidaturas) ?></span>
             </h1>
 
+            <?php
+            if (isset($_GET["msg"]) && $_GET["msg"] === "removida") {
+                echo '<div class="alert alert-success" style="margin-bottom: 24px;">✅ Candidatura cancelada com sucesso!</div>';
+            }
+            ?>
+
             <?php if (count($candidaturas) === 0): ?>
                 <div class="empty-state">
                     <div class="empty-icon">📭</div>
                     <h3>Nenhuma candidatura ainda</h3>
-                    <p>Você ainda não se candidatou a nenhuma vaga.</p>
-                    <a href="../index.php" class="btn btn-primary">Ver vagas disponíveis</a>
+                    <p>Você ainda não se candidatou a nenhuma vaga no IFsul Vagas.</p>
+                    <p style="margin-top: 12px; color: var(--cinza);">Explore as oportunidades disponíveis e candidate-se!</p>
+                    <a href="../index.php" class="btn btn-success" style="margin-top: 16px;">
+                        🔍 Explorar vagas disponíveis
+                    </a>
                 </div>
             <?php else: ?>
                 <div class="vagas-grid">
@@ -75,8 +85,8 @@ $candidaturas = $candDAO->listarPorUsuario($idUsuario);
                             <?php endif; ?>
 
                             <div class="vaga-content">
-                                <span class="vaga-categoria" style="background: var(--success);">
-                                    ✅ Candidatado
+                                <span class="vaga-categoria" style="background: var(--ifsul-verde);">
+                                    ✅ CANDIDATO
                                 </span>
                                 <h3 class="vaga-titulo"><?= htmlspecialchars($vaga["titulo"]) ?></h3>
                                 <p class="vaga-descricao">
@@ -90,7 +100,7 @@ $candidaturas = $candDAO->listarPorUsuario($idUsuario);
                                     
                                     <a href="descandidatar.php?id_vaga=<?= $vaga["id"] ?>" 
                                        class="btn btn-danger btn-small"
-                                       onclick="return confirm('Deseja cancelar sua candidatura?')">
+                                       onclick="return confirm('⚠️ Deseja realmente cancelar sua candidatura para esta vaga?')">
                                         ❌ Cancelar
                                     </a>
                                 </div>
@@ -104,7 +114,10 @@ $candidaturas = $candDAO->listarPorUsuario($idUsuario);
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; <?= date("Y") ?> VagasJob - Todos os direitos reservados</p>
+            <div class="footer-content">
+                <p>&copy; <?= date("Y") ?> <span class="footer-ifsul">IFsul Vagas</span> - Portal de Oportunidades</p>
+                <p>🎓 Instituto Federal Sul-rio-grandense - Educação de Excelência</p>
+            </div>
         </div>
     </footer>
 </body>
