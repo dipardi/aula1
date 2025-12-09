@@ -1,0 +1,229 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* BODY / FUNDO GERAL */
+body {
+    background: #f3f4f6; /* cinza claro */
+    color: #111827;
+    line-height: 1.5;
+}
+
+/* CONTAINER CENTRAL */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* TÍTULOS */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: #111827;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin: 24px 0 12px;
+    color: #111827;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin: 16px 0 8px;
+}
+
+/* LINKS */
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* BOTÕES GENÉRICOS */
+button,
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 0.95rem;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button:hover,
+.btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+button:active,
+.btn:active {
+    transform: translateY(0);
+}
+
+/* BOTÕES ESPECÍFICOS */
+.btn-danger {
+    background: #dc2626;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+}
+
+.btn-outline:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+/* FORMULÁRIOS */
+form {
+    margin-top: 12px;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+}
+
+/* TABELAS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.95rem;
+}
+
+th, td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+th {
+    background: #f9fafb;
+    font-weight: 600;
+}
+
+tr:nth-child(even) td {
+    background: #f9fafb;
+}
+
+/* MENSAGENS */
+.msg {
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.msg-sucesso {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+.msg-erro {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.msg-aviso {
+    background: #fffbeb;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+/* NAV SIMPLES (PARA HOME) */
+.nav {
+    margin-bottom: 16px;
+}
+
+.nav a {
+    margin-right: 12px;
+    font-size: 0.95rem;
+}
+
+/* IMAGENS PEQUENAS (LISTAS) */
+.img-pequena {
+    border-radius: 999px;
+    object-fit: cover;
+}
+
+/* CARDS DE VAGA (vamos usar depois) */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.card-meta {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.card-actions {
+    margin-top: 8px;
+}

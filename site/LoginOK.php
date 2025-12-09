@@ -1,33 +1,25 @@
 <?php
 session_start();
 
-include_once "usuario.class.php";
-include_once "UsuarioDAO.php"; // ajusta o nome se o arquivo for diferente
+include_once "../class/usuario.class.php";
+include_once "../class/usuario.DAO.class.php";
 
-// Verifica se veio via POST
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: login.php");
+    header("Location: Login.php");
     exit;
 }
 
 $email = $_POST["email"] ?? "";
 $senha = $_POST["senha"] ?? "";
 
-// Cria o objeto usuário e preenche
-$usuario = new Usuario();
+// a classe no arquivo usuario.class.php normalmente é "usuario" (minúsculo)
+$usuario = new usuario();
 $usuario->setUniversal("email", $email);
 $usuario->setUniversal("senha", $senha);
 
-// Chama o DAO
-$dao = new UsuarioDAO();
+$dao = new UsuarioDAO(); // nome da classe dentro de usuario.DAO.class.php
 $retorno = $dao->login($usuario);
 
-/*
-   Retornos possíveis do login():
-   0 -> email não cadastrado
-   1 -> senha incorreta
-   array -> login OK (dados do usuário)
-*/
 
 if ($retorno === 0) {
     header("Location: login.php?erro=0");

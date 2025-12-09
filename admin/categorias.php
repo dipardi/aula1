@@ -31,8 +31,11 @@ $categorias = $dao->listar();
 <head>
     <meta charset="UTF-8">
     <title>Admin - Categorias</title>
+    <link rel="stylesheet" href="../assets/style.css"> <!-- ADICIONAR -->
 </head>
 <body>
+<div class="container"> <!-- ADICIONAR -->
+
     <h1>Admin - Categorias de Vagas</h1>
 
     <?php
@@ -80,5 +83,8 @@ $categorias = $dao->listar();
         <?php endforeach; ?>
     </table>
 
+    <!-- formulário + tabela de categorias -->
+</div> <!-- ADICIONAR -->
 </body>
 </html>
+

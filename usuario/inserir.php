@@ -8,8 +8,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="../assets/style.css"> <!-- ADICIONAR -->
 </head>
 <body>
+<div class="container"> <!-- ADICIONAR -->
 
     <h1>Cadastro de Usuário</h1>
 
@@ -34,5 +36,8 @@
 
     <p>Já tem cadastro? <a href="../site/Login.php">Faça login</a></p>
 
+    <!-- formulário de cadastro -->
+</div> <!-- ADICIONAR -->
 </body>
 </html>
+

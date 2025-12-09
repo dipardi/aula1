@@ -80,4 +80,18 @@ class VagaDAO {
         $ret = $sql->fetch(PDO::FETCH_ASSOC);
         return $ret ?: null;
     }
+    public function listarAtivasPorCategoria(int $idCategoria): array {
+    $sql = $this->conexao->prepare("
+        SELECT v.*, c.nome AS categoria
+        FROM vagas v
+        JOIN categorias c ON v.id_categoria = c.id
+        WHERE v.ativa = 1
+          AND v.id_categoria = :id_categoria
+        ORDER BY v.id DESC
+    ");
+    $sql->bindValue(":id_categoria", $idCategoria, PDO::PARAM_INT);
+    $sql->execute();
+    return $sql->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }

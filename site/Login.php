@@ -12,8 +12,10 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
 <head>
     <meta charset="UTF-8">
     <title>Login - Sistema de Vagas</title>
+    <link rel="stylesheet" href="../assets/style.css"> <!-- ADICIONAR -->
 </head>
 <body>
+    <div class="container"> <!-- ADICIONAR -->
     <h1>Login</h1>
 
     <?php
@@ -45,5 +47,6 @@ if (isset($_GET["msg"]) && $_GET["msg"] === "cadastrado") {
 
         <button type="submit">Entrar</button>
     </form>
+    </div> <!-- ADICIONAR -->
 </body>
 </html>
