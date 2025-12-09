@@ -41,19 +41,35 @@ class CandidaturaDAO {
         return $linha["total"] > 0;
     }
 
-    // Listar inscritos de uma vaga (vamos usar depois no ADM)
+    // Listar inscritos de uma vaga (para admin)
     public function listarPorVaga(int $idVaga): array {
         $sql = $this->conexao->prepare("
             SELECT c.*, u.nome, u.email, u.imagem, u.linkedin
             FROM candidaturas c
             JOIN bruninho u ON c.id_usuario = u.id
             WHERE c.id_vaga = :id_vaga
+            ORDER BY c.data_candidatura DESC
         ");
         $sql->bindValue(":id_vaga", $idVaga, PDO::PARAM_INT);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // NOVO: Listar candidaturas de um usuário
+    public function listarPorUsuario(int $idUsuario): array {
+        $sql = $this->conexao->prepare("
+            SELECT c.*, v.titulo as vaga_titulo
+            FROM candidaturas c
+            JOIN vagas v ON c.id_vaga = v.id
+            WHERE c.id_usuario = :id_usuario
+            ORDER BY c.data_candidatura DESC
+        ");
+        $sql->bindValue(":id_usuario", $idUsuario, PDO::PARAM_INT);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Remover candidatura
     public function remover(int $idUsuario, int $idVaga): bool {
         $sql = $this->conexao->prepare("
             DELETE FROM candidaturas
